@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TuniShow</title>
+  <link rel="icon" href="ffff.png" type="image/png">
+  <link rel="shortcut icon" href="tss.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #0f0f1b;
+      color: white;
+      direction: rtl;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #060615;
+      padding: 10px 20px;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #e50914;
+    }
+
+    .search-box {
+      position: absolute;
+      left: 20px;
+    }
+
+    .search-box input {
+      padding: 5px 10px;
+      border-radius: 20px;
+      border: none;
+      font-size: 14px;
+      width: 180px;
+    }
+
+    .top-text {
+      background-color: #251515;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      box-shadow: inset 0 -1px 0 rgba(255,255,255,0.1);
+    }
+
+    .top-text span {
+      display: inline-block;
+      padding-right: 100%;
+      animation: scrollText 20s linear infinite;
+    }
+
+    @keyframes scrollText {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      background-color: #222;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    .category {
+      margin: 0 15px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: color 0.3s ease;
+      text-decoration: none;
+      color: white;
+    }
+
+    .category:hover {
+      color: #e50914;
+    }
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-height: 400px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .carousel-slide {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .carousel-info {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.6);
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .carousel-controls {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 20px;
+    }
+
+    .carousel-controls button {
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 50%;
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin: 30px 20px 10px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 10px;
+      gap: 15px;
+    }
+
+    .card {
+      width: 200px;
+      background-color: #38b4ca00;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #e50914;
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .card-title {
+      padding: 10px;
+      text-align: center;
+      color: #e4ebf0;
+    }
+
+    footer {
+      background-color: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    .footer-section, .footer-links {
+      margin: 10px 0;
+    }
+
+    .footer-links a {
+      display: inline-block;
+      margin: 0 10px;
+      color: #e50914;
+      text-decoration: none;
+    }
+
+    .footer-bottom {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #888;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo"><span>Tuni</span>Show</div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="ابحث عن مسلسل أو فيلم..." oninput="searchCards()">
+    </div>
+  </header>
+
+  <div class="top-text">
+    <span>موقع TuniShow مخصص لعشاق المسلسلات والأفلام التونسية، مع تغطية كاملة لأحدث المسلسلات الرمضانية.</span>
+  </div>
+
+  <!-- ✅ القائمة الرئيسية -->
+  <nav class="categories">
+    <a href="index.html" class="category">رئيسية</a>
+    <a href="mosalsalet.html" class="category">مسلسلات تونسية</a>
+    <a href="film.html" class="category">أفلام تونسية</a>
+    <a href="ramadan.html" class="category">مسلسلات رمضان 2025</a>
+  </nav>
+
+  <!-- ✅ الرئيسية -->
+  <div id="home" class="carousel">
+    <div class="carousel-slide" style="display: block">
+      <img src="fetna (1).jpg" alt="مسلسل الفتنة">
+      <div class="carousel-info">الفتنة - دراما وتشويق</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="youssef (1).jpg" alt="رقوج 2">
+      <div class="carousel-info">رقوج 2 - الكنز</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="harissa.jpg" alt="Harissa Land">
+      <div class="carousel-info">Harissa Land - كوميديا</div>
+    </div>
+    <div class="carousel-controls">
+      <button onclick="prevSlide()">❮</button>
+      <button onclick="nextSlide()">❯</button>
+    </div>
+  </div>
+
+  <!-- ✅ مسلسلات تونسية -->
+  <div id="series">
+    <div class="section-title">الأكثر مشاهدة</div>
+    <div class="cards">
+      <a href="ragouj.html" class="card series"><img src="youssef (1).jpg"><div class="card-title">Ragouj 2</div></a>
+      <a href="fetna.html" class="card series"><img src="fetna (1).jpg"><div class="card-title">الفتنة</div></a>
+      <a href="wed el bey.html" class="card series"><img src="web bay (1).jpg"><div class="card-title">وادي الباي</div></a>
+      <a href="sahbek.html" class="card series"><img src="ba5.jpg"><div class="card-title">Sahbek Rajel</div></a>
+      <a href="zaem.html" class="card series"><img src="zaeem (1).jpg"><div class="card-title">الزعيم</div></a>
+      <a href="arrier.html" class="card series"><img src="a1.jpg"><div class="card-title">اريار قدام</div></a>
+    </div>
+  </div>
+
+  <!-- ✅ أفلام تونسية -->
+  <div id="films">
+    <div class="section-title">أحدث الإضافات</div>
+    <div class="cards">
+      <a href="safeh.html" class="card film"><img src="FilmSaffehNabeul.jpg"><div class="card-title">فيلم سفاح نابل
+      </div></a>
+      <a href="codezen.html" class="card ramadan"><img src="codezen.jpg"><div class="card-title">كود زين </div></a>
+      <a href="khormafilm.html" class="card ramadan"><img src="khorma.jpg"><div class="card-title">  فيلم خرمة   </div></a>
+      <a href="vent.html" class="card film"><img src="vent.jpg"><div class="card-title"> 	الشرش/Vent Du Nord   </div></a>
+      <a href="zizoufilm.html" class="card ramadan"><img src="film zizou.jpg"><div class="card-title">فيلم زيزو   </div></a>
+      <a href="nouba2.html" class="card ramadan"><img src="nouba2.jpg"><div class="card-title"> نوبة الجزء الثاني   </div></a>
+      <a href="nouba1.html" class="card ramadan"><img src="nouba1.jpg"><div class="card-title">  نوبة الجزء 1  </div></a>
+    </div>
+  </div>
+
+  <!-- ✅ مسلسلات رمضان -->
+  <div id="ramadan">
+    <div class="section-title">مسلسلات رمضان 2025</div>
+    <div class="cards">
+      <a href="yasmin w fola.html" class="card ramadan"><img src="yasmine w foula.jpg"><div class="card-title">ياسمين و فلة</div></a>
+      <a href="doctorhob.html" class="card ramadan"><img src="doctor.jpg"><div class="card-title">دكتور حب</div></a>
+      <a href="zaem.html" class="card ramadan"><img src="zaeem (1).jpg"><div class="card-title">الزعيم</div></a>
+      <a href="arrier.html" class="card ramadan"><img src="a1.jpg"><div class="card-title"> اريار قدام</div></a>
+      <a href="ragouj.html" class="card ramadan"><img src="youssef (1).jpg"><div class="card-title"> رقوج 2 - الكنز</div></a>
+      <a href="wed el bey.html" class="card ramadan"><img src="web bay (1).jpg"><div class="card-title"> وادي الباي</div></a>
+      <a href="sahbek.html" class="card ramadan"><img src="ba5.jpg"><div class="card-title">صاحبك راجل </div></a>
+      <a href="fetna.html" class="card ramadan"><img src="fetna (1).jpg"><div class="card-title">الفتنة </div></a>
+      <a href="codezen.html" class="card ramadan"><img src="codezen.jpg"><div class="card-title">كود زين </div></a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-section">
+      <p>احصل على أفضل تجربة على الموقع</p>
+      <button>اشتراك</button>
+    </div>
+    <div class="footer-links">
+      <a href="#">تابع أحدث أخبارنا</a>
+      <a href="#">تلغرام</a>
+      <a href="#">انستغرام</a>
+      <a href="#">فيسبوك</a>
+    </div>
+    <div class="footer-section">
+      <a href="#">اتصل بالموقع</a> | 
+      <a href="#">إعلانات</a> | 
+      <a href="#">الدعم</a> | 
+      <a href="#">التعليقات</a> | 
+      <a href="#">مركز الأمان</a> | 
+      <a href="#">الأسئلة الشائعة</a> | 
+      <a href="#">الخدمات</a> | 
+      <a href="#">سياسة الخصوصية</a> | 
+      <a href="#">شروط الخدمة</a>
+    </div>
+    <div class="footer-bottom">
+      <p>حقوق النشر © 2025. جميع الحقوق محفوظة.</p>
+      <p>نستخدم ملفات تعريف الارتباط لتحسين تجربتك على هذا الموقع. <a href="#">تعرف على المزيد</a></p>
+      <p>TuniShow</p>
+    </div>
+  </footer>
+
+  <script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.display = i === index ? 'block' : 'none';
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(currentIndex);
+    }
+
+    setInterval(() => nextSlide(), 5000);
+
+    function searchCards() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const title = card.textContent.toLowerCase();
+        card.style.display = title.includes(query) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
