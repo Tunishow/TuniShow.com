@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مشاهدة الحلقات</title>
+  <link rel="shortcut icon" href="tss.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #0f0f1b;
+      color: white;
+      direction: rtl;
+    }
+
+    header {
+      background-color: #060615;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #f0f0f0;
+    }
+
+    .logo span {
+      color: #e50914;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      color: #e50914;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-container input {
+      padding: 8px;
+      margin-left: 10px;
+      font-size: 16px;
+      border: 1px solid #333;
+      border-radius: 5px;
+      background-color: #222;
+      color: white;
+    }
+
+    .search-container button {
+      padding: 8px 15px;
+      background-color: #e50914;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .episode-title {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 20px;
+    }
+
+    .episode-video {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      border-radius: 10px;
+      background-color: #222;
+    }
+
+    .episode-list {
+      margin: 30px auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    .episode-list a {
+      display: block;
+      padding: 15px;
+      background-color: #1c1c2b;
+      border-radius: 10px;
+      color: #e50914;
+      text-decoration: none;
+      font-size: 18px;
+      border: 2px solid #e50914;
+      transition: 0.3s;
+    }
+
+    .episode-list a:hover {
+      background-color: #e50914;
+      color: #060615;
+      transform: scale(1.05);
+    }
+
+    .back-home {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .back-home a {
+      color: white;
+      background-color: #333;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 60px;
+      background-color: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    .footer-links a {
+      color: #aaa;
+      margin: 0 5px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span>Tuni</span>Show</div>
+  <nav>
+    <a href="index.html">رئيسية</a>
+    <a href="mosalsalet.html">مسلسلات</a>
+    <a href="film.html">أفلام</a>
+    <a href="ramadan.html">رمضان 2025</a>
+  </nav>
+  <div class="search-container">
+    <input type="text" placeholder="ابحث هنا...">
+    <button>بحث</button>
+  </div>
+</header>
+
+<div class="container">
+  <div class="episode-title" id="episode-title">حلقة - </div>
+
+  <div class="episode-video">
+    <iframe id="episode-video" src="" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div class="episode-list" id="episode-list">
+    <!-- روابط الحلقات -->
+    <script>
+      for (let i = 1; i <= 30; i++) {
+        document.write(`<a href="#" onclick="loadEpisode(${i})">حلقة ${i}</a>`);
+      }
+    </script>
+  </div>
+
+  <div class="back-home">
+    <a href="index.html">🔙 العودة إلى الصفحة الرئيسية</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 TuniShow - جميع الحقوق محفوظة</p>
+  <div class="footer-links">
+    <a href="#">فيسبوك</a>
+    <a href="#">إنستغرام</a>
+    <a href="#">تلغرام</a>
+  </div>
+</footer>
+
+<script>
+  const videoLinks = {     
+    "1": "https://app.videas.fr/embed/media/d64aca76-1008-4f01-9151-7354bb12a2f7/?player=89d2dfde-5716-4d67-8eeb-212dcfade65c",
+        "2": "https://geo.dailymotion.com/player.html?video=k6tn2lDOSy9UBOCMOCg",
+        "3": "https://geo.dailymotion.com/player.html?video=k3Lxv1xFgHHIq0CMOCk",
+        "4": "https://geo.dailymotion.com/player.html?video=k2BDFuOIMV9UOdCMOCi",
+        "5": "https://geo.dailymotion.com/player.html?video=k7z3oMlspc5lgRCMOCa",
+        "6": "https://geo.dailymotion.com/player.html?video=kHUtS1fE5Iucf0CMOC6",
+        "7": "https://geo.dailymotion.com/player.html?video=k3L2dBfpSdLXuACMOCc",
+        "8": "https://geo.dailymotion.com/player.html?video=k62QFNtZZyDhdgCMOC8",
+        "9": "https://geo.dailymotion.com/player.html?video=k2qMcN7ozOPo6dCMOC4",
+        "10": "https://geo.dailymotion.com/player.html?video=k1sOTGO6hFOBjGCMOCe",
+        "11": "//listeamed.net/e/QNB7xA3GWojO0WG",
+        "12":"//listeamed.net/e/e028E6lAekR5YAv",
+        "13":"//listeamed.net/e/k3gG5qLZ8eDO1N2",
+        "14":"//listeamed.net/e/YWA8E94ZepDxGmM",
+      "15":"//listeamed.net/e/JzkPxzwMJ9rEbyd",
+      "16":"https://app.videas.fr/embed/media/900ed6b1-afec-44a2-8eb6-e6004ad3be55/?player=89d2dfde-5716-4d67-8eeb-212dcfade65c",
+      "17":"https://app.videas.fr/embed/media/b22d1585-6c80-4b1d-9494-63f2e0d049ca/?player=89d2dfde-5716-4d67-8eeb-212dcfade65c",
+      "18":"https://app.videas.fr/embed/media/79ba5210-865a-4f63-9504-7252097ebeff/",
+      "19":"https://app.videas.fr/embed/media/f44faab2-f6e7-4047-88d4-2d2892631589/?player=89d2dfde-5716-4d67-8eeb-212dcfade65c",
+      "20":"https://app.videas.fr/embed/media/b7eb9aeb-ec6f-4243-9f35-cfeed81f06d0/?player=89d2dfde-5716-4d67-8eeb-212dcfade65c",
+   
+
+  }
+
+  function loadEpisode(epNumber) {
+    const iframe = document.getElementById("episode-video");
+    const title = document.getElementById("episode-title");
+    iframe.src = videoLinks[epNumber] || "";
+    title.innerText = `حلقة ${epNumber} -    نوبة الجزء الثاني `;
+  }
+
+  // تلقائياً نعرض الحلقة حسب الرابط ?episode=
+  const query = new URLSearchParams(window.location.search);
+  const ep = query.get("episode") || 1;
+  loadEpisode(ep);
+</script>
+
+</body>
+</html>

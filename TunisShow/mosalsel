@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مسلسلات تونسية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #0f0f1b;
+      color: white;
+      direction: rtl;
+    }
+
+    header {
+      background-color: #060615;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #f0f0f0;
+    }
+
+    .logo span {
+      color: #e50914;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #e50914;
+    }
+
+    .series-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px 20px;
+    }
+
+    .series-card {
+      background-color: #1c1c2b;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s;
+      text-align: center;
+      border: 2px solid #e50914;
+    }
+
+    .series-card:hover {
+      transform: scale(1.05);
+    }
+
+    .series-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .series-card h3 {
+      margin: 15px 0;
+      color: #e50914;
+    }
+
+    .back-home {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .back-home a {
+      color: white;
+      background-color: #333;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo"><span>Tuni</span>Show</div>
+    <nav>
+      <a href="index.html">رئيسية</a>
+      <a href="mosalsalet.html">مسلسلات تونسية</a>
+      <a href="#">أفلام تونسية</a>
+      <a href="#">رمضان 2025</a>
+    </nav>
+  </header>
+
+  <div class="series-container">
+    <a href="ragouj.html" class="series-card">
+      <img src="images/ragg.jpg" alt="مسلسل رقّوج">
+      <h3>رقّوج</h3>
+    </a>
+
+    <!-- تنجم تزيد هنا مسلسلات آخرين -->
+    <!-- مثال:
+    <a href="mosalsal2.html" class="series-card">
+      <img src="images/mosalsal2.jpg" alt="اسم المسلسل">
+      <h3>اسم المسلسل</h3>
+    </a>
+    -->
+  </div>
+
+  <div class="back-home">
+    <a href="index.html">🔙 العودة إلى الصفحة الرئيسية</a>
+  </div>
+
+</body>
+</html>
